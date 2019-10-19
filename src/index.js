@@ -9,9 +9,9 @@ function expressionCalculator(expr) {
     let newStr = expr.split('');
 
     function parseNewStr(newInput) {
-        var calc = [];
+        let calc = [];
         currentValue = '';
-    for (var i = 0, ch; ch = newInput[i]; i++) {
+    for (let i = 0, ch; ch = newInput[i]; i++) {
         if ('^*/+-'.indexOf(ch) > -1) {
             if (currentValue == '' && ch == '-') {
                 currentValue = '-';
@@ -27,35 +27,17 @@ function expressionCalculator(expr) {
         calc.push(parseFloat(currentValue));
     }
     return calc;
-    
-    // for (var i = 0; i < newInput.length; i++) {
-    //     if ('()*/+-'.indexOf(newInput[i]) > -1 && newInput[i] != '') {
-    //             calc.push(newInput[i]);
-    //             console.log(calc);
-    //         } else if (!isNaN(newInput[i])) {
-    //             calc.push(parseFloat(newInput[i]));
-    //     }
-    // }
     }
      function calculate(operatedInput) {
 
-        var ops = [{'*': (a, b) => a * b, '/': (a, b) => a / b},
+        let ops = [{'*': (a, b) => a * b, '/': (a, b) => a / b},
                     {'+': (a, b) => a + b, '-': (a, b) => a - b}],
             output = [],
-            // open = ['('],
-            // close = [')'],
             currentOper;
-        for (var i = 0; i < ops.length; i++) {
-            for (var j = 0; j < operatedInput.length; j++) {
+        for (let i = 0; i < ops.length; i++) {
+            for (let j = 0; j < operatedInput.length; j++) {
                 if (ops[i][operatedInput[j]]) {
                     currentOper = ops[i][operatedInput[j]];
-                // } else if (open[0]== operatedInput[j]) {
-                //     currentOper += open[0];
-                //     console.log(currentOper);
-                // } else if (close[0] == operatedInput[j]) {
-                //     output[output.length-1] = currentOper(output[output.length-1], operatedInput[j]);
-                //     output.pop();
-                // }
                }      else if (currentOper) {
                     output[output.length - 1] = 
                         currentOper(output[output.length-1], operatedInput[j]);
